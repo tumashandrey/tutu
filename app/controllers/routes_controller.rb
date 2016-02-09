@@ -21,6 +21,9 @@ class RoutesController < ApplicationController
     end
   end
   
+  def upate
+  end
+  
   private
   
   def route_params
