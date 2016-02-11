@@ -1,10 +1,10 @@
 class RoutesController < ApplicationController
-  def show
-    @route = Route.find(params[:id])
-  end
-  
   def index
     @routes = Route.all
+  end
+  
+  def show
+    @route = Route.find(params[:id])
   end
   
   def new
@@ -21,7 +21,18 @@ class RoutesController < ApplicationController
     end
   end
   
-  def upate
+  def edit
+    @route = Route.find(params[:id])
+  end
+  
+  def update
+    @route = Route.find(params[:id])
+    
+    if @route.update(route_params)
+      redirect_to @route
+    else
+      render 'edit'
+    end
   end
   
   private
