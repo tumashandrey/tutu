@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208194058) do
+ActiveRecord::Schema.define(version: 20160222215423) do
 
   create_table "railway_stations", force: :cascade do |t|
     t.string   "Title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "railway_stations_routes", id: false, force: :cascade do |t|
+    t.integer "railway_station_id", null: false
+    t.integer "route_id",           null: false
+  end
+
+  add_index "railway_stations_routes", ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
 
   create_table "routes", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +36,9 @@ ActiveRecord::Schema.define(version: 20160208194058) do
     t.string   "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "route_id"
   end
+
+  add_index "trains", ["route_id"], name: "index_trains_on_route_id"
 
 end
