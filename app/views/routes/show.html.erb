@@ -5,5 +5,14 @@
   <%= @route.name %>
 </p>
 
+<p>
+  <strong>Trains:</strong>
+  <% if @route.trains.empty? %>
+    "Нет"
+  <% else %>
+    <%= @route.trains.map{|t| t.number}.join(", ") %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>
