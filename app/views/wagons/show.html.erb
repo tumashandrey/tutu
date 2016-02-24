@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Train:</strong>
+    <%= @train.route.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @wagon.type %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @wagon.type %>
+</p>
+
+<p>
+  <strong>Down seats:</strong>
+  <%= @wagon.down_seats %>
+</p>
+
+<p>
+  <strong>Up seats:</strong>
+  <%= @wagon.up_seats %>
+</p>
+
+<%= link_to 'Edit', edit_train_path(@train) %> |
+<%= link_to 'Back', trains_path %>

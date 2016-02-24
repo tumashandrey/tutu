@@ -1,0 +1,27 @@
+<%= form_for(@wagon) do |f| %>
+  <% if @wagon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this train from being saved:</h2>
+
+      <ul>
+      <% @wagon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.text_field :number %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :route, "Маршрут" %><br>    
+    <%= f.collection_select :route_id, Route.all, :id, :name %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
