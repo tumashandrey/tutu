@@ -1,7 +1,7 @@
 <%= form_for(@wagon) do |f| %>
   <% if @wagon.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this train from being saved:</h2>
+      <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this wagon from being saved:</h2>
 
       <ul>
       <% @wagon.errors.full_messages.each do |message| %>
@@ -12,15 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :number %><br>
-    <%= f.text_field :number %>
+    <%= f.label :train, "Поезд" %><br>    
+    <%= f.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wagon_type, "Тип" %><br>
+    <%= f.collection_select :wagon_type, Wagon::TYPES, :to_s, :to_s %>
   </div>
   
   <div class="field">
-    <%= f.label :route, "Маршрут" %><br>    
-    <%= f.collection_select :route_id, Route.all, :id, :name %>
+    <%= f.label :up_seats %><br>
+    <%= f.text_field :up_seats %>
   </div>
   
+  <div class="field">
+    <%= f.label :down_seats %><br>
+    <%= f.text_field :down_seats %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

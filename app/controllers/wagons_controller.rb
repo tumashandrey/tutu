@@ -1,74 +1,63 @@
-class TrainsController < ApplicationController
-  before_action :set_train, only: [:show, :edit, :update, :destroy]
+class WagonsController < ApplicationController
+  before_action :set_wagon, only: [:show, :edit, :update, :destroy]
 
-  # GET /trains
-  # GET /trains.json
+  # GET /wagons
+  # GET /wagons.json
   def index
-    @trains = Train.all
+    @wagons = Wagon.all
   end
 
-  # GET /trains/1
-  # GET /trains/1.json
+  # GET /wagons/1
+  # GET /wagons/1.json
   def show
   end
 
-  # GET /trains/new
+  # GET /wagons/new
   def new
-    @train = Train.new
+    @wagon = Wagon.new
   end
 
-  # GET /trains/1/edit
+  # GET /wagons/1/edit
   def edit
   end
 
-  # POST /trains
-  # POST /trains.json
+  # POST /wagons
+  # POST /wagons.json
   def create
-    @train = Train.new(train_params)
+    @wagon = Wagon.new(wagon_params)
 
-    respond_to do |format|
-      if @train.save
-        format.html { redirect_to @train, notice: 'Train was successfully created.' }
-        format.json { render :show, status: :created, location: @train }
-      else
-        format.html { render :new }
-        format.json { render json: @train.errors, status: :unprocessable_entity }
-      end
+    if @wagon.save
+      redirect_to @wagon, notice: 'wagon was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /trains/1
-  # PATCH/PUT /trains/1.json
+  # PATCH/PUT /wagons/1
+  # PATCH/PUT /wagons/1.json
   def update
-    respond_to do |format|
-      if @train.update(train_params)
-        format.html { redirect_to @train, notice: 'Train was successfully updated.' }
-        format.json { render :show, status: :ok, location: @train }
-      else
-        format.html { render :edit }
-        format.json { render json: @train.errors, status: :unprocessable_entity }
-      end
+    if @wagon.update(wagon_params)
+      redirect_to @wagon, notice: 'wagon was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /trains/1
-  # DELETE /trains/1.json
+  # DELETE /wagons/1
+  # DELETE /wagons/1.json
   def destroy
-    @train.destroy
-    respond_to do |format|
-      format.html { redirect_to trains_url, notice: 'Train was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @wagon.destroy
+    redirect_to wagons_url, notice: 'wagon was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_train
-      @train = Train.find(params[:id])
+    # Use callbacks to share common setup or conswagonts between actions.
+    def set_wagon
+      @wagon = Wagon.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def train_params
-      params.require(:train).permit(:number, :route_id)
+    def wagon_params
+      params.require(:wagon).permit(:train_id, :up_seats, :down_seats, :wagon_type)
     end
 end

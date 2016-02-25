@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Wagon:</strong>
+    <%= @wagon.id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @wagon.wagon_type %>
+</p>
+
+<p>
   <strong>Train:</strong>
-    <%= @train.route.name %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @wagon.type %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @wagon.type %>
+  <%= @wagon.train.number %>
 </p>
 
 <p>
@@ -25,5 +25,5 @@
   <%= @wagon.up_seats %>
 </p>
 
-<%= link_to 'Edit', edit_train_path(@train) %> |
-<%= link_to 'Back', trains_path %>
+<%= link_to 'Edit', edit_wagon_path(@wagon) %> |
+<%= link_to 'Back', wagons_path %>
