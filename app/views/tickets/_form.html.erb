@@ -12,15 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :number %><br>
-    <%= f.text_field :number %>
+    <%= f.label :fio %><br>
+    <%= f.text_field :fio %>
   </div>
   
   <div class="field">
-    <%= f.label :route, "Маршрут" %><br>    
-    <%= f.collection_select :route_id, Route.all, :id, :name %>
+    <%= f.label :start_railway_station, "Начальная" %><br>    
+    <%= f.collection_select :start_railway_station_id, RailwayStation.all, :id, :title %>
   </div>
   
+  <div class="field">
+    <%= f.label :finish_railway_station, "Конечная" %><br>    
+    <%= f.collection_select :finish_railway_station_id, RailwayStation.all, :id, :title %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
