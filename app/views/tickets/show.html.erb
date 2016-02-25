@@ -1,37 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
-  <%= @ticket.number %>
+  <strong>Id:</strong>
+  <%= @ticket.id %>
 </p>
 
 <p>
-  <strong>Route:</strong>
-  <% if @ticket.route %>    
-    <%= @ticket.route.name %>
-  <% else %>
-    "Маршрут не назначен"
-    <% end %>
+  <strong>Train:</strong>
+  <%= @ticket.train.number %>
 </p>
 
 <p>
-  "Вагонов: "
-  <% Wagon::TYPES.each do |t| %>
-    <strong><%= t %></strong>
-    <%= @ticket.wagons.where(wagon_type: t).count %>
-  <% end %>
+  <strong>Начальная станция:</strong>
+  <%= @ticket.start_railway_station %>
 </p>
 
-  <% Wagon::TYPES.each do |t| %>
-<p>
-    <strong><%= t %> - </strong>
-    <% w = @ticket.wagons.where(wagon_type: t) %>
-    Верхних: 
-    <%= w.map(&:up_seats).compact.sum %>
-    Нижних: 
-    <%= w.map(&:down_seats).compact.sum %>
-</p>
-  <% end %>
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>
