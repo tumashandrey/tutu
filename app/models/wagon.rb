@@ -1,6 +1,7 @@
 class Wagon < ActiveRecord::Base
-  ECONOM = "Плацкарт"
+  ECONOM   = "Плацкарт"
   BUSINESS = "Купе"  
-  TYPES = [ECONOM, BUSINESS]
+  TYPES    = [ECONOM, BUSINESS]
+  
   belongs_to :train
 end
