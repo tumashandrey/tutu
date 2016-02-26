@@ -10,7 +10,7 @@
   <% if @route.trains.empty? %>
     "Нет"
   <% else %>
-    <%= @route.trains.map{|t| t.number}.join(", ") %>
+    <%= @route.trains.pluck(:number).join(', ') %>
   <% end %>
 </p>
 
