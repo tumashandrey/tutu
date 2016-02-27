@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226091319) do
+ActiveRecord::Schema.define(version: 20160226153940) do
 
   create_table "railway_stations", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160226091319) do
   create_table "railway_stations_routes", id: false, force: :cascade do |t|
     t.integer "railway_station_id", null: false
     t.integer "route_id",           null: false
+    t.integer "station_pos"
   end
 
   add_index "railway_stations_routes", ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160226091319) do
     t.integer "side_up_seats"
     t.integer "side_down_seats"
     t.integer "seat_places"
+    t.integer "pos"
   end
 
   add_index "wagons", ["train_id"], name: "index_wagons_on_train_id"
