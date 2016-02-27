@@ -5,12 +5,14 @@ class Wagon < ActiveRecord::Base
   
   belongs_to :train
   
-  before_save :update_pos, if: :train_id_changed?
+  after_validation :update_pos, if: :train_id_changed?
   
   private 
 
   def update_pos
-    p "update_pos"
-    # self.pos = last_wagon.pos + 1 unless self.id != last_wagon.id
+    return unless self.train
+    
+    max_pos = self.train.wagons.maximum(:pos) || 0
+    self.pos = max_pos + 1
   end  
 end
