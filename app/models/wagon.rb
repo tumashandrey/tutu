@@ -5,6 +5,8 @@ class Wagon < ActiveRecord::Base
   
   belongs_to :train
   
+  validates :pos, uniqueness: { scope: :train_id }
+  
   after_validation :update_pos, if: :train_id_changed?
   
   private 
