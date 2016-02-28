@@ -32,6 +32,17 @@
     <%= w.map(&:down_seats).compact.sum %>
 </p>
   <% end %>
+  
+<p>
+  <strong>Вагоны:</strong>
+</p>
+  
+  <% wagons = @train.wagons_order_asc? ? @train.wagons.order_asc : @train.wagons.order_desc %>
+  <% wagons.each do |w| %>  
+    <p>
+      <%= link_to(w, w) %>
+    </p>    
+  <% end %>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

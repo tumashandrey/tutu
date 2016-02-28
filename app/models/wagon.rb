@@ -9,6 +9,9 @@ class Wagon < ActiveRecord::Base
   
   after_validation :update_pos, if: :train_id_changed?
   
+  scope :order_asc, -> { order('pos ASC') }
+  scope :order_desc, -> { order('pos DESC') }
+  
   private 
 
   def update_pos
@@ -16,5 +19,5 @@ class Wagon < ActiveRecord::Base
     
     max_pos = self.train.wagons.maximum(:pos) || 0
     self.pos = max_pos + 1
-  end  
+  end
 end
