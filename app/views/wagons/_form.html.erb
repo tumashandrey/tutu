@@ -17,8 +17,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :wagon_type, "Тип" %><br>
-    <%= f.collection_select :wagon_type, Wagon::TYPES, :to_s, :to_s %>
+    <%= f.label :type, "Тип" %><br>
+    <%= f.select :type, Wagon::TYPES_HASH %>
   </div>
   
   <div class="field">
@@ -29,6 +29,16 @@
   <div class="field">
     <%= f.label :down_seats %><br>
     <%= f.text_field :down_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :side_up_seats %><br>
+    <%= f.text_field :side_up_seats %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :seat_places %><br>
+    <%= f.text_field :seat_places %>
   </div>
 
   <div class="actions">
