@@ -1,6 +1,7 @@
 class WagonsController < ApplicationController
-  before_action :set_wagon, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_wagon, only: [:edit, :edit, :update, :destroy, :show]
+  before_action :set_train, only: [:new, :create]
+  
   # GET /wagons
   # GET /wagons.json
   def index
@@ -24,10 +25,10 @@ class WagonsController < ApplicationController
   # POST /wagons
   # POST /wagons.json
   def create
-    @wagon = Wagon.new(wagon_params)
+    @wagon = @train.wagons.new(wagon_params)
 
     if @wagon.save
-      redirect_to @wagon, notice: 'wagon was successfully created.'
+      redirect_to @train, notice: 'wagon was successfully created.'
     else
       render :new
     end
@@ -54,6 +55,10 @@ class WagonsController < ApplicationController
     # Use callbacks to share common setup or conswagonts between actions.
     def set_wagon
       @wagon = Wagon.find(params[:id])
+    end
+
+    def set_train
+      @train = Train.find(params[:train_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
