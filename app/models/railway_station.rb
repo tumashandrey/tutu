@@ -5,6 +5,8 @@ class RailwayStation < ActiveRecord::Base
   scope :ordered, -> { includes(:railway_stations_routes).order("railway_stations_routes.station_pos ASC") }
   
   def set_position(route, position)
-    self.railway_stations_routes.where(route: route).station_pos = position    
+    rsr = self.railway_stations_routes.where(route: route).first
+    rsr.station_pos = position
+    rsr.save    
   end
 end
