@@ -58,6 +58,6 @@ class WagonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wagon_params
-      params.require(:wagon).permit(:train_id, :up_seats, :down_seats, :wagon_type)
+      params.require(:wagon).permit(:train_id, :up_seats, :down_seats, :side_up_seats, :side_down_seats, :seat_places, :wagon_type, :type)
     end
 end

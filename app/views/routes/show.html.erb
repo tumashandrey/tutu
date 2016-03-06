@@ -14,5 +14,16 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Stations:</strong>
+  <p>
+    <% @route.railway_stations.ordered.each do |s| %>
+      <p>
+          <%= s.title %>
+      </p>
+    <% end %>
+  </p>
+</p>
+
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>

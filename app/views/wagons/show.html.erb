@@ -15,15 +15,40 @@
   <%= @wagon.train.number %>
 </p>
 
-<p>
-  <strong>Down seats:</strong>
-  <%= @wagon.down_seats %>
-</p>
+<% if @wagon.down_seats %>
+  <p>  
+    <strong>Down seats:</strong>
+    <%= @wagon.down_seats %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Up seats:</strong>
-  <%= @wagon.up_seats %>
-</p>
+<% if @wagon.down_seats %>
+  <p>
+    <strong>Up seats:</strong>
+    <%= @wagon.up_seats %>
+  </p>
+<% end %>
+
+<% if @wagon.side_down_seats %>
+  <p>  
+    <strong>Side down seats:</strong>
+    <%= @wagon.side_down_seats %>
+  </p>
+<% end %>
+
+<% if @wagon.side_down_seats %>
+  <p>
+    <strong>Side up seats:</strong>
+    <%= @wagon.side_up_seats %>
+  </p>
+<% end %>
+
+<% if @wagon.seat_places %>
+  <p>  
+    <strong>Seat places:</strong>
+    <%= @wagon.seat_places %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_wagon_path(@wagon) %> |
 <%= link_to 'Back', wagons_path %>
