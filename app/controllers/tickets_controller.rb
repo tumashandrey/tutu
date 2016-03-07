@@ -14,7 +14,10 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    @ticket = Ticket.new()
+    @ticket.train_id = params[:train_id]
+    @ticket.start_railway_station_id = params[:start_railway_station_id]
+    @ticket.finish_railway_station_id = params[:finish_railway_station_id]
   end
 
   # GET /tickets/1/edit
@@ -24,7 +27,7 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = Ticket.new(params)
 
     respond_to do |format|
       if @ticket.save
