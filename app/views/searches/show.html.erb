@@ -1,1 +1,13 @@
 <h1>Поиск билета</h1>
+
+<%= form_tag search_path do %>
+    <p>
+      <%= select_tag :start_station, options_from_collection_for_select(@stations, :id, :title) %>
+    </p>
+    <p>
+      <%= select_tag :end_station, options_from_collection_for_select(@stations, :id, :title) %>
+    </p>
+    <p>
+      <%= submit_tag "Найти", class: 'btn btn-primary find' %>
+    </p>
+<% end %>
