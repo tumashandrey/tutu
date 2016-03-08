@@ -16,7 +16,6 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new()
-    @ticket.build_user
     
     @ticket.train_id = params[:train_id]
     @ticket.start_railway_station_id = params[:start_railway_station_id]
