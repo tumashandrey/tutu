@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!, only: :create
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   
   # GET /tickets
@@ -29,7 +30,7 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = current_user.tickets.new(ticket_params)
 
     if @ticket.save
       redirect_to @ticket, notice: 'Ticket was successfully created.'
@@ -39,11 +40,7 @@ class TicketsController < ApplicationController
   end
   
   def get_user
-    fio = params['fio']
-    passport = params['passport']
-    
-    @user = User.find_by(fio: fio, passport: passport)
-    @user = User.create(fio: fio, passport: passport) if @user.nil?
+    @user = User.find_or_create_by(fio: params['fio'], passport: params['passport'])
   end
 
   # PATCH/PUT /tickets/1
