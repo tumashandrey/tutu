@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!, only: :create
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /tickets
   # GET /tickets.json
   def index
@@ -14,7 +15,12 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    @ticket = Ticket.new()
+    @ticket.build_user
+    
+    @ticket.train_id = params[:train_id]
+    @ticket.start_railway_station_id = params[:start_railway_station_id]
+    @ticket.finish_railway_station_id = params[:finish_railway_station_id]
   end
 
   # GET /tickets/1/edit
@@ -24,17 +30,17 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = current_user.tickets.new(ticket_params)
 
-    respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
-      else
-        format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
+    if @ticket.save
+      redirect_to @ticket, notice: 'Ticket was successfully created.'
+    else
+      render :new
     end
+  end
+  
+  def get_user
+    @user = User.find_or_create_by(fio: params['fio'], passport: params['passport'])
   end
 
   # PATCH/PUT /tickets/1
@@ -69,6 +75,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:train_id, :start_railway_station_id, :finish_railway_station_id, :fio)
+      params.require(:ticket).permit(:train_id, :start_railway_station_id, :finish_railway_station_id, user_attributes: [:fio, :passport])
     end
 end

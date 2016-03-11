@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :fio %><br>
-    <%= f.text_field :fio %>
-  </div>
+   <%= f.fields_for :user, @ticket.user do |user_fields| %>
+    FIO  : <%= user_fields.text_field :fio %>
+    Passport: <%= user_fields.text_field :passport %>
+  <% end %>
   
   <div class="field">
     <%= f.label :start_railway_station, "Начальная" %><br>    
@@ -28,5 +28,5 @@
 
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div>  
 <% end %>
