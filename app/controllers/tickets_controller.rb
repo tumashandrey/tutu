@@ -45,14 +45,10 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
   def update
-    respond_to do |format|
-      if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ticket }
-      else
-        format.html { render :edit }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
+    if @ticket.update(ticket_params)
+      redirect_to @ticket, notice: 'Ticket was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -60,20 +56,17 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1.json
   def destroy
     @ticket.destroy
-    respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or consticketts between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
-    end
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:train_id, :start_railway_station_id, :finish_railway_station_id, user_attributes: [:fio, :passport])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_params
+    params.require(:ticket).permit(:train_id, :start_railway_station_id, :finish_railway_station_id, user_attributes: [:fio, :passport])
+  end
 end
