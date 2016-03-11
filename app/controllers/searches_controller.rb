@@ -9,8 +9,8 @@ class SearchesController < ApplicationController
     
     @routes = []
     
-    start_routes = Route.joins(:railway_stations_routes).where(railway_stations_routes: {railway_station_id: @start_station})
-    end_routes = Route.joins(:railway_stations_routes).where(railway_stations_routes: {railway_station_id: @end_station})
+    start_routes = @start_station.routes
+    end_routes = @end_station.routes
     
     @routes = start_routes & end_routes
     
