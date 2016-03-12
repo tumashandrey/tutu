@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер:</strong>
   <%= @train.number %>
 </p>
 
 <p>
-  <strong>Route:</strong>
+  <strong>t('route')</strong>
   <% if @train.route %>    
     <%= @train.route.name %>
   <% else %>
@@ -48,5 +48,5 @@
 <p>
   <%= link_to 'Добавить вагон', new_admin_train_wagon_path(@train) %> |
 </p>
-<%= link_to 'Edit', edit_admin_train_path(@train) %> |
-<%= link_to 'Back', admin_trains_path %>
+<%= link_to t('common.edit'), edit_admin_train_path(@train) %> |
+<%= link_to t('common.back'), admin_trains_path %>
