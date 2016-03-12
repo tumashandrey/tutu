@@ -1,34 +1,36 @@
 <h1>Поиск билета</h1>
 
-<%= form_tag search_path, method: :get do %>
-    <p>
-      <%= select_tag :start_station, options_from_collection_for_select(@stations, :id, :title) %>
-    </p>
-    <p>
-      <%= select_tag :end_station, options_from_collection_for_select(@stations, :id, :title) %>
-    </p>
-    <p>
+<div class='row'>
+  <%= form_tag search_path, method: :get do %>
+    <div class='col-md-4'>
+      <%= select_tag :start_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
+    <div class='col-md-4'>
+      <%= select_tag :end_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
+    <div class='col-md-4'>
       <%= submit_tag "Найти", class: 'btn btn-primary find' %>
-    </p>
-<% end %>
+    </div>
+  <% end %>
 
-<% @routes.each do |route| %>
-  <p>
-    <strong>Name:</strong>
-    <%= route.name %>
-    <%= route.arrive_departure_time(@start_station, @end_station) %>
-  </p>
-  <p>
-    <strong>Trains:</strong>
-    <% if route.trains.empty? %>
-      "Нет"
-    <% else %>
-      <% route.trains.each do |train| %>
-        <p>
-          <%= train.number  %>
-          <%= link_to "Купить", new_ticket_path(train_id: train.id, start_railway_station_id: @start_station.id, finish_railway_station_id: @end_station.id) %>
-        </p>
+  <% @routes.each do |route| %>
+    <p>
+      <strong>Name:</strong>
+      <%= route.name %>
+      <%= route.arrive_departure_time(@start_station, @end_station) %>
+    </p>
+    <p>
+      <strong>Trains:</strong>
+      <% if route.trains.empty? %>
+        "Нет"
+      <% else %>
+        <% route.trains.each do |train| %>
+          <p>
+            <%= train.number  %>
+            <%= link_to "Купить", new_ticket_path(train_id: train.id, start_railway_station_id: @start_station.id, finish_railway_station_id: @end_station.id) %>
+          </p>
+        <% end %>
       <% end %>
-    <% end %>
-  </p>
-<% end %>
+    </p>
+  <% end %>
+</div>
