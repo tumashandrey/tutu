@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
-  resources :trains do
-    resources :wagons, shallow: true
-  end  
-  resources :railway_stations do
-    patch :update_position, on: :member
-  end
-  resources :routes
+  devise_for :users
   resources :tickets
   resource :search, only: [:new, :show, :edit]
+  
+  namespace :admin do
+    resources :railway_stations do
+      patch :update_position, on: :member
+    end
+    
+    resources :trains do
+      resources :wagons, shallow: true
+    end  
+
+    resources :routes
+    resources :tickets
+  end
   
   
   get 'welcome/index'

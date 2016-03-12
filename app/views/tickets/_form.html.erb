@@ -11,11 +11,6 @@
     </div>
   <% end %>
 
-   <%= f.fields_for :user, @ticket.user do |user_fields| %>
-    FIO  : <%= user_fields.text_field :fio %>
-    Passport: <%= user_fields.text_field :passport %>
-  <% end %>
-  
   <div class="field">
     <%= f.label :start_railway_station, "Начальная" %><br>    
     <%= f.collection_select :start_railway_station_id, RailwayStation.all, :id, :title %>

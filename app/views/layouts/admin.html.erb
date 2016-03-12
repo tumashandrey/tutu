@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tutu</title>
+  <title>Tutu - Администратор</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,8 +12,6 @@
  <p class="alert"><%= alert %></p>
  
  <% if user_signed_in? %>
-   <%= current_user.email %>
-   <%= "Админ" if current_user.admin? %>
    <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
  <% else %>
    <%= link_to 'Войти', new_user_session_path %>   
