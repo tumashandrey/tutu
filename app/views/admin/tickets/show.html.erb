@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @ticket.id %>
+</p>
+
+<p>
+  <strong>Начальная станция:</strong>
+  <%= @ticket.start_railway_station.title %>
+</p>
+
+<p>
+  <strong>Конечная станция:</strong>
+  <%= @ticket.finish_railway_station.title %>
+</p>
+
+<%= link_to t('common.edit'), edit_admin_ticket_path(@ticket) %> |
+<%= link_to t('common.back'), admin_tickets_path %>
