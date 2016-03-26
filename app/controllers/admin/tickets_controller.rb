@@ -1,11 +1,11 @@
-class TicketsController < ApplicationController
+class Admin::TicketsController < Admin::BaseController
   before_action :authenticate_user!, only: :create
   before_action :set_ticket, only: [:edit, :edit, :update, :destroy]
   
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.where(user: current_user)
+      @tickets = Ticket.all
   end
 
   # GET /tickets/1
